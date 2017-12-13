@@ -26,10 +26,11 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                     connection.mockRespond(new Response(new ResponseOptions({
                         status: 200,
                         body: {
-                            id: user.id,
-                            username: user.username,
-                            firstName: user.firstName,
-                            lastName: user.lastName,
+                            //id: user.id,
+                            email: user.email,
+                            //firstName: user.firstName,
+                            //lastName: user.lastName,
+                            password: user.password,
                             token: 'fake-jwt-token'
                         }
                     })));
