@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AlertService, AuthenticationService } from '../_services/index';
 import { User } from '../_models/user';
+import { Headers, RequestOptions } from '@angular/http';
 
 @Component({
     moduleId: module.id.toString(),
@@ -36,9 +37,14 @@ public output: User;
     login() {
         this.loading = true;
         var user_login = '{"EMAIL: ":"'+this.model.email+'","PASSWORD":"'+this.model.password+'"}';
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        
+        let headers = new Headers();
+        headers.append("Content-Type", 'application/json');
+        //headers.append("Authorization", 'Bearer ' + localStorage.getItem('id_token'));
+        //let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
         this.http.post<User>('http://172.31.1.30/bookshelf-api/public/start.php/api/login', user_login)
+
         .subscribe(
           (dato => {
             this.model = dato;
