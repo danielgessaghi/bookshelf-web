@@ -1,7 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { HttpClient } from '@angular/common/http';
 import { AlertService, AuthenticationService } from '../_services/index';
+import { User } from '../_models/user';
 
 @Component({
     moduleId: module.id.toString(),
@@ -13,11 +14,16 @@ export class LoginComponent implements OnInit {
     loading = false;
     returnUrl: string;
 
+public input: User;
+public output: User;
+
     constructor(
+        private http: HttpClient,
         private route: ActivatedRoute,
-        private router: Router,
+        //private router: Router,
         private authenticationService: AuthenticationService,
         private alertService: AlertService) { }
+
 
     ngOnInit() {
         // reset login status
@@ -29,6 +35,23 @@ export class LoginComponent implements OnInit {
 
     login() {
         this.loading = true;
+        var user_login = '{"EMAIL: ":"'+this.model.email+'","PASSWORD":"'+this.model.password+'"}';
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        
+        this.http.post<User>('http://172.31.1.30/bookshelf-api/public/start.php/api/login', user_login)
+        .subscribe(
+          (dato => {
+            this.model = dato;
+          })
+        /*this.http.get<User>(`http://172.31.1.30/bookshelf/public/start.php/api/login?password=${this.model.password}`)
+          .subscribe(
+            (dato2 => {
+              this.model = dato2;
+            })*/
+        );
+
+
+/*
         this.authenticationService.login(this.model.email, this.model.password)
             .subscribe(
                 data => {
@@ -38,5 +61,7 @@ export class LoginComponent implements OnInit {
                     this.alertService.error(error);
                     this.loading = false;
                 });
+*/
     }
+
 }

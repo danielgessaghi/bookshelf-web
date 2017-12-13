@@ -1,6 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { HttpClient } from '@angular/common/http';
 import { AlertService, UserService } from '../_services/index';
 
 @Component({
@@ -13,6 +13,7 @@ export class RegisterComponent {
     loading = false;
 
     constructor(
+        private http: HttpClient,
         private router: Router,
         private userService: UserService,
         private alertService: AlertService) { }

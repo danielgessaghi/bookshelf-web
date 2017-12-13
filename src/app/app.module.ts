@@ -21,6 +21,8 @@ import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { RegisterComponent } from './register/index';
         BrowserModule,
         FormsModule,
         HttpModule,
-        routing
+        routing,
+        HttpClientModule
   ],
   providers: [
         AuthGuard,
