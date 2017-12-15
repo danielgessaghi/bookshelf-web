@@ -15,8 +15,9 @@ export class LoginComponent implements OnInit {
     loading = false;
     returnUrl: string;
 
-public input: User;
-public output: User;
+//public input: User;
+//public output: User;
+public ip_address: string = 'http://172.31.1.30/bookshelf-api/public/start.php/api/login';
 
     constructor(
         private http: HttpClient,
@@ -36,28 +37,37 @@ public output: User;
 
     login() {
         this.loading = true;
-        var user_login = '{"EMAIL: ":"'+this.model.email+'","PASSWORD":"'+this.model.password+'"}';
-        let headers = new Headers();
-        headers.append("Content-Type", 'application/json');
+        var user_login = '{"EMAIL":"'+this.model.email+'","PASSWORD":"'+this.model.password+'"}';
+        //let headers = new Headers();
+        //headers.append("Content-Type", 'application/json');
         //headers.append("Authorization", 'Bearer ' + localStorage.getItem('id_token'));
         //let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
+        //let options = new RequestOptions({ headers: headers });
 
-        this.http.post<User>('http://172.31.1.30/bookshelf-api/public/start.php/api/login', user_login)
+        this.http.post<User>(this.ip_address, user_login)
+        .subscribe(
+        error => {
+            //this.alertService.error(error);
+            this.loading = false;
+        });
 
+
+
+
+
+/*
         .subscribe(
           (dato => {
             this.model = dato;
           })
-        /*this.http.get<User>(`http://172.31.1.30/bookshelf/public/start.php/api/login?password=${this.model.password}`)
+        this.http.get<User>(`http://172.31.1.30/bookshelf/public/start.php/api/login?password=${this.model.password}`)
           .subscribe(
             (dato2 => {
               this.model = dato2;
-            })*/
+            })
         );
 
 
-/*
         this.authenticationService.login(this.model.email, this.model.password)
             .subscribe(
                 data => {
