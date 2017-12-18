@@ -1,5 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-    
+    padding-top: 3.5rem;
+    font-size: initial;
 }
-
+a.navbar-brand{
+    font-size: x-large;
+}
+a.btn-navbar{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+}

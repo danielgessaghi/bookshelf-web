@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const ConcatPlugin = require('webpack-concat-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
@@ -11,7 +12,7 @@ const cssnano = require('cssnano');
 const customProperties = require('postcss-custom-properties');
 
 const { NoEmitOnErrorsPlugin, SourceMapDevToolPlugin, NamedModulesPlugin } = require('webpack');
-const { NamedLazyChunksWebpackPlugin, BaseHrefWebpackPlugin } = require('@angular/cli/plugins/webpack');
+const { InsertConcatAssetsWebpackPlugin, NamedLazyChunksWebpackPlugin, BaseHrefWebpackPlugin } = require('@angular/cli/plugins/webpack');
 const { CommonsChunkPlugin } = require('webpack').optimize;
 const { AngularCompilerPlugin } = require('@ngtools/webpack');
 
@@ -378,6 +379,18 @@ module.exports = {
   },
   "plugins": [
     new NoEmitOnErrorsPlugin(),
+    new ConcatPlugin({
+      "uglify": false,
+      "sourceMap": true,
+      "name": "scripts",
+      "fileName": "[name].bundle.js",
+      "filesToConcat": [
+        "node_modules\\bootstrap\\dist\\js\\bootstrap.js"
+      ]
+    }),
+    new InsertConcatAssetsWebpackPlugin([
+      "scripts"
+    ]),
     new CopyWebpackPlugin([
       {
         "context": "src",
