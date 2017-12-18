@@ -12,7 +12,7 @@ import { Headers, RequestOptions } from '@angular/http';
 })
 
 export class LoginComponent implements OnInit {
-    model: any = {};
+    model: User = new User();
     loading = false;
     returnUrl: string;
 
@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
     constructor(
         private http: HttpClient,
         private route: ActivatedRoute,
+        private router: Router,
         private authenticationService: AuthenticationService,
         private alertService: AlertService) { }
     ngOnInit() {
@@ -30,12 +31,12 @@ export class LoginComponent implements OnInit {
     }
     login() {
         this.loading = true;
-        var user_login = '{"EMAIL":"' + this.model.email + '","PASSWORD":"' + this.model.password + '"}';
-        this.http.post<User>(this.ip_address, user_login)
+        this.http.post<User>(this.ip_address, this.model)
             .subscribe(
             ret => {
                 localStorage.setItem('currentUser', JSON.stringify(ret));
                 this.loading = false;
+                this.router.navigate(['/home']);
             });
     }
 }
