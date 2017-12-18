@@ -8,6 +8,7 @@ import { Headers, RequestOptions } from '@angular/http';
 @Component({
     moduleId: module.id.toString(),
     templateUrl: 'login.component.html'
+
 })
 
 export class LoginComponent implements OnInit {
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
     loading = false;
     returnUrl: string;
 
-    public ip_address: string = 'http://172.31.1.30/bookshelf-api/public/start.php/api/login';
+    public ip_address: string = '/bookshelf-api/public/start.php/api/login';
 
     constructor(
         private http: HttpClient,
@@ -32,7 +33,8 @@ export class LoginComponent implements OnInit {
         var user_login = '{"EMAIL":"' + this.model.email + '","PASSWORD":"' + this.model.password + '"}';
         this.http.post<User>(this.ip_address, user_login)
             .subscribe(
-            error => {
+            ret => {
+                localStorage.setItem('currentUser', JSON.stringify(ret));
                 this.loading = false;
             });
     }
