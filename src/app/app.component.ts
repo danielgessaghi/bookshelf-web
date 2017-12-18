@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import { User } from '../app/_models/index';
+import { UserService } from '../app/_services/index';
 import '../assets/app.css';
 
 @Component({
@@ -9,4 +10,9 @@ import '../assets/app.css';
 })
 export class AppComponent {
   title: "app";
+  currentUser: User;
+
+  constructor(private userService: UserService) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
 }
