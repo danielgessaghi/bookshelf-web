@@ -25,6 +25,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { BooksComponent } from './books/index';
 import { CartComponent } from './cart/index';
 
+import { PagerService } from './_models/book';
+
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -41,14 +44,15 @@ import { CartComponent } from './cart/index';
         FormsModule,
         HttpModule,
         routing,
-        HttpClientModule
+        HttpClientModule,
+        InfiniteScrollModule
   ],
   providers: [
         AuthGuard,
         AlertService,
         AuthenticationService,
         UserService,
-
+        PagerService,
         // providers used to create fake backend
         fakeBackendProvider,
         MockBackend,
