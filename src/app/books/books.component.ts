@@ -18,15 +18,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AlertService, AuthenticationService } from '../_services/index';
-import { Item } from '../_models/item';
 import { Book } from '../_models/book';
 
 @Component({
-  templateUrl: 'books.component.html'
+  selector: 'books',
+  templateUrl: './books.component.html'
 })
 
-export class TableComponent implements OnInit {
-  model: Item = new Item();
+export class BooksComponent implements OnInit {
+  model: Book = new Book();
   loading = false;
   returnUrl: string;
 
