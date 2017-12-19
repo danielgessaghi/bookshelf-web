@@ -16,8 +16,6 @@ export class LoginComponent implements OnInit {
     loading = false;
     returnUrl: string;
 
-    public ip_address: string = '/bookshelf-api/public/start.php/api/login';
-
     constructor(
         private http: HttpClient,
         private route: ActivatedRoute,
@@ -31,12 +29,6 @@ export class LoginComponent implements OnInit {
     }
     login() {
         this.loading = true;
-        this.http.post<User>(this.ip_address, this.model)
-            .subscribe(
-            ret => {
-                localStorage.setItem('currentUser', JSON.stringify(ret));
-                this.loading = false;
-                this.router.navigate(['/home']);
-            });
+        this.authenticationService.login(this.model);
     }
 }

@@ -1,5 +1,5 @@
-export class Book{
-    constructor(){
+export class Book {
+    constructor() {
         this.ISBN = "";
         this.TITLE = "";
         this.AUTHOR = "";
@@ -9,10 +9,10 @@ export class Book{
 
     }
     ISBN: string;
-    TITLE:string;
-    AUTHOR:string;
-    PUBBLICATION_DATE:string;
-    ID_CATEGORY:number;
-    PAGES:number;
-    PRICE:number;
+    TITLE: string;
+    AUTHOR: string;
+    PUBBLICATION_DATE: string;
+    ID_CATEGORY: number;
+    PAGES: number;
+    PRICE: number;
 }

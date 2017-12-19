@@ -1,3 +1,33 @@
-<div>
-    
+<div class="col-md-12">
+    <h2>Cart List</h2>
+    <form name="form" (ngSubmit)="f.form.valid && order()" #f="ngForm" novalidate>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Book ISBN</th>
+                    <th>Book Title</th>
+                    <th>Book Author</th>
+                    <th>Book Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let Item of CartItems">
+                    <th scope="row">
+                        {{this.Item.ID_ORDER}}
+                    </th>
+                    <td>
+                        {{this.Item.Book.TITLE}}
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" name="QUANTITY" [(ngModel)]="Item.QUANTITY" />
+                    </td>
+                </tr>
+            </tbody>
+            <div class="form-group">
+                <button class="btn btn-lg btn-success">Order</button>
+            </div>
+        </table>
+    </form>
 </div>

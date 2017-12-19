@@ -1,13 +1,12 @@
 import { Book } from "./book";
-
-export class CartList{
-    constructor(){
+import { User } from "./index";
+import { AuthenticationService } from "../_services/authentication.service"
+export class CartItem {
+    constructor() {
         this.ID_ORDER = 0;
         this.QUANTITY = 0;
-        this.TITLE = "";
     }
-
     ID_ORDER: number;
-    TITLE: string;
-    QUANTITY:number;
+    BOOK: Book;
+    QUANTITY: number;
 }
