@@ -1,1 +1,64 @@
- 
+<div>
+  <div class="container">
+    <div class="text-center">
+      <h1>Shelf</h1>
+
+
+      <div class="search-results" infinite-scroll (scrolled)="onScrollDown()" [scrollWindow]="false">
+
+
+
+        <!-- items being paged -->
+        <table border="1">
+          <tr>
+            <th>ISBN</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Pages</th>
+            <th>Price</th>
+          </tr>
+          <tr *ngFor="let item of pagedItems">
+            <td>
+              <span> {{item.ISBN}}</span>
+            </td>
+            <td>
+              <span> {{item.TITLE}}</span>
+            </td>
+            <td>
+              <span> {{item.AUTHOR}}</span>
+            </td>
+            <td>
+              <span> {{item.PAGES}}</span>
+            </td>
+            <td>
+              <span> {{item.PRICE}}</span>
+            </td>
+          </tr>
+        </table>
+
+      </div>
+
+      <!-- pager
+      <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+        <li [ngClass]="{disabled:pager.currentPage === 1}">
+          <a (click)="setPage(1)">First</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === 1}">
+          <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+        </li>
+        <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+          <a (click)="setPage(page)">{{page}}</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+          <a (click)="setPage(pager.currentPage + 1)">Next</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+          <a (click)="setPage(pager.totalPages)">Last</a>
+        </li>
+      </ul>
+      -->
+
+    </div>
+  </div>
+  <hr />
+</div>

@@ -1,66 +1,70 @@
-/*
-var app = angular.module('angularTable', ['angularUtils.directives.dirPagination']);
-
-app.controller('listdata',function($scope, $http){
-	$scope.users = []; //declare an empty array
-	$http.get("mockJson/mock.json").success(function(response){
-		$scope.users = response;  //ajax request to fetch data into $scope.data
-	});
-
-	$scope.sort = function(keyname){
-		$scope.sortKey = keyname;   //set the sortKey to the param passed
-		$scope.reverse = !$scope.reverse; //if true make it false and vice versa
-	}
-});
-*/
-
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AlertService, AuthenticationService } from '../_services/index';
-import { Book } from '../_models/book';
+import { PagerService, Book } from '../_models/book';
+
 
 @Component({
+  moduleId: module.id,
   selector: 'books',
-  templateUrl: './books.component.html'
+  templateUrl: 'books.component.html',
+  styles: [
+    `.search-results {
+            height: 20rem;
+            overflow: scroll;
+        }`
+  ],
+
+  /*
+      template: `
+          <div class="search-results"
+              infiniteScroll
+              [infiniteScrollDistance]="2"
+              [infiniteScrollThrottle]="50"
+              (scrolled)="onScroll()">
+          </div>
+          `
+  */
 })
 
 export class BooksComponent implements OnInit {
   model: Book = new Book();
-  loading = false;
-  returnUrl: string;
+  p: number = 1;
+  lock: boolean = false;
+  constructor(private http: HttpClient, private pagerService: PagerService) { }
 
+  public ip_address: string = '/bookshelf-api/public/start.php/api/books/list/';
 
-  public ip_address: string = '/bookshelf-api/public/start.php/api/books/list/{page}';
+  // array of all items to be paged
+  private allItems: any[];
 
-  constructor(
-    private http: HttpClient,
-    private route: ActivatedRoute,
-    private router: Router,
-    private alertService: AlertService
-  ) { }
+  // pager object
+  pager: any = {}
 
+  // paged items
+  pagedItems: any[];
 
   ngOnInit() {
-
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.pagedItems = [];
+    // get dummy data
+    this.loadNextPage();
   }
 
-  /*
-
-    listdata() {
-      this.http.get<Item>(this.ip_address, this.model)
-        .subscribe(
-        data => {
-          this.router.navigate(['/login']);
-
-        },
-        error => {
-          this.alertService.error(error);
-          this.loading = false;
+  loadNextPage() {
+    if (!this.lock) {
+      this.lock = true;
+      this.http.get<Array<any>>(this.ip_address + this.p)
+        .subscribe(data => {
+          // set items to json response
+          this.pagedItems = this.pagedItems.concat(data);
+          this.p = this.p + 1;
+          this.lock = false;
         });
     }
+  }
 
-    */
-
+  onScrollDown() {
+    this.loadNextPage();
+  }
 }
