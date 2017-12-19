@@ -1,4 +1,4 @@
-export class book{
+export class Book{
     constructor(){
         this.ISBN = "";
         this.TITLE = "";
