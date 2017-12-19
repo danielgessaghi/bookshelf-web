@@ -23,6 +23,7 @@ import { RegisterComponent } from './register/index';
 
 import { HttpClientModule } from '@angular/common/http';
 import { BooksComponent } from './books/index';
+import { CartComponent } from './cart/index';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { BooksComponent } from './books/index';
         HomeComponent,
         LoginComponent,
         RegisterComponent,
-        BooksComponent
+        BooksComponent,
+        CartComponent
   ],
   imports: [
         BrowserModule,
