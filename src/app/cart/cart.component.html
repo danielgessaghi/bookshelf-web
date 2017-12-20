@@ -15,30 +15,30 @@
             <tbody>
                 <tr *ngFor="let item of CartItems">
                     <th scope="row">
-                        {{this.item.ID_ORDER}}
+                        {{item.ID_ORDER}}
                     </th>
                     <td>
-                        {{this.item.BOOK.ISBN}}
+                        {{item.BOOK.ISBN}}
                     </td>
                     <td>
-                        {{this.item.BOOK.TITLE}}
+                        {{item.BOOK.TITLE}}
                     </td>
                     <td>
-                        {{this.item.BOOK.AUTHOR}}
+                        {{item.BOOK.AUTHOR}}
                     </td>
                     <td>
-                        {{this.item.BOOK.PRICE}}
+                        {{item.BOOK.PRICE}}
                     </td>
                     <td>
                         <form>
-                            <input type="number" value="1" name="QUANTITY" [(ngModel)]="item.QUANTITY" #quantity="ngModel" required >
+                            <input type="number" name="QUANTITY" [(ngModel)]="item.QUANTITY" #quantity="ngModel" required>
                         </form>
                     </td>
                 </tr>
             </tbody>
         </table>
         <div class="form-group offset-11">
-            <button class="btn btn-success">Order</button>
+            <button  class="btn btn-success">Order</button>
         </div>
     </form>
 </div>

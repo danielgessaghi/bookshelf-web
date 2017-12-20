@@ -5,6 +5,8 @@ import { AlertService, AuthenticationService } from '../_services/index';
 import { User } from '../_models/index';
 import { UserService } from '../_services/index';
 import { CartItem } from '../_models/cartList';
+import { forEach } from '@angular/router/src/utils/collection';
+import { Book } from '../_models/book';
 
 @Component({
   selector: 'cart',
@@ -12,7 +14,6 @@ import { CartItem } from '../_models/cartList';
 })
 
 export class CartComponent implements OnInit {
-  //model: CartItem = new CartItem();
   currentUser: User;
   public CartItem: CartItem = new CartItem();
   public CartItems: Array<CartItem>;
@@ -29,22 +30,33 @@ export class CartComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
   private ip_address: string = '/bookshelf-api/public/start.php/api/cart/list';
-  private order_api:string = '/bookshelf-api/public/start.php/api/cart/ordered';
+  private order_api: string = '/bookshelf-api/public/start.php/api/cart/ordered';
 
   ngOnInit() {
     this.http.get<Array<CartItem>>(this.ip_address)
-    .subscribe(data => {
-      //debugger; 
-      this.CartItems = data;
-    });
+      .subscribe(data => {
+        //debugger; 
+        this.CartItems = data;
+        localStorage.setItem('CartItems', JSON.stringify(this.CartItems));
+      });
   }
-  
-  order(model: Array<CartItem>){
-    this.http.post(this.order_api, model)
-    .subscribe(ret=>{
-      if (ret) {
-        this.router.navigateByUrl('./home');
-      }
-    })
+  /*  newQuantity(ID_ORDER : number){
+     let item =  this.CartItems.find(id => id.ID_ORDER == ID_ORDER);
+     this.CartItems.push(item);
+    }*/
+
+  public elements: Array<number>;
+  order() {
+    let i = 0;
+    let CartItems = JSON.parse(localStorage.getItem('CartItems'));
+    while (CartItems[i] != null) {
+      this.http.post(this.order_api, CartItems[i])
+        .subscribe(ret => {
+          if (ret) {
+            this.router.navigateByUrl('./home');
+          }
+        })
+      i++;
+    }
   }
 }
