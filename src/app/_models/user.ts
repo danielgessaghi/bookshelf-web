@@ -11,6 +11,7 @@
         this.CAP = "";
         this.COUNTRY = "";
         this.creationDate = new Date(Date.now());
+        this.Logged = false;
     }
     id: number;
     USERNAME: string;
@@ -25,4 +26,5 @@
     COUNTRY: string;
     STREET: string;
     creationDate: Date;
+    Logged : boolean;
 }

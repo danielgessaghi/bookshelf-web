@@ -10,11 +10,19 @@ import '../assets/app.css';
 })
 export class AppComponent {
   title: "app";
-  currentUser: User;
+  currentUser: User ;
   isLogged: boolean
 
   constructor(private userService: UserService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.isLogged = AuthenticationService.prototype.IsLogged();
+    if (this.currentUser) 
+    {
+      this.isLogged = this.currentUser.Logged;
+    } 
+    else 
+    {
+      this.isLogged = false;
+    }
+    
   }
 }

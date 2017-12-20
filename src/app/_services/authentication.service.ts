@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class AuthenticationService {
     private ip_address: string = '/bookshelf-api/public/start.php/api/login';
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {}
 
     private isLogged: boolean;
     IsLogged(): boolean {
@@ -17,12 +17,12 @@ export class AuthenticationService {
     UserName(): string {
         return this.user ? this.user.USERNAME : "";
     }
-// la login non va per ora ma setto loggato nel html per aggungere le altre funzionalità
     login(model: User) {
         this.http.post<User>(this.ip_address, model)
             .subscribe(ret => {
                 if (ret) {
                     this.user = ret;
+                    this.user.Logged = true;
                     localStorage.setItem('currentUser', JSON.stringify(this.user));
                     this.isLogged = true;
                 }
