@@ -14,7 +14,8 @@ import { CartItem } from '../_models/cartList';
 export class CartComponent implements OnInit {
   //model: CartItem = new CartItem();
   currentUser: User;
-  CartItems : Array<CartItem>;
+  public CartItem: CartItem = new CartItem();
+  public CartItems: Array<CartItem>;
   loading = false;
   returnUrl: string;
 
@@ -27,20 +28,23 @@ export class CartComponent implements OnInit {
   ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
-  public ip_address: string = '/bookshelf-api/public/start.php/api/cart/list';
+  private ip_address: string = '/bookshelf-api/public/start.php/api/cart/list';
+  private order_api:string = '/bookshelf-api/public/start.php/api/cart/ordered';
 
   ngOnInit() {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    this.http.get<CartItems>(this.ip_address)
-    .subscribe(
-    ret => {
-        if (ret) {
-            this.user = ret;
-            localStorage.setItem('currentUser', JSON.stringify(this.user));
-            this.isLogged = true;
-        }
-    })
+    this.http.get<Array<CartItem>>(this.ip_address)
+    .subscribe(data => {
+      //debugger; 
+      this.CartItems = data;
+    });
   }
-  order(){
+  
+  order(model: Array<CartItem>){
+    this.http.post(this.order_api, model)
+    .subscribe(ret=>{
+      if (ret) {
+        this.router.navigateByUrl('./home');
+      }
+    })
   }
 }

@@ -17,11 +17,10 @@ export class AuthenticationService {
     UserName(): string {
         return this.user ? this.user.USERNAME : "";
     }
-
+// la login non va per ora ma setto loggato nel html per aggungere le altre funzionalità
     login(model: User) {
         this.http.post<User>(this.ip_address, model)
-            .subscribe(
-            ret => {
+            .subscribe(ret => {
                 if (ret) {
                     this.user = ret;
                     localStorage.setItem('currentUser', JSON.stringify(this.user));

@@ -30,5 +30,6 @@ export class LoginComponent implements OnInit {
     login() {
         this.loading = true;
         this.authenticationService.login(this.model);
+        this.router.navigateByUrl('/home');
     }
 }
