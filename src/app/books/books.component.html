@@ -13,6 +13,9 @@
           </tr>
           <tr *ngFor="let item of pagedItems">
             <td>
+              <button (click)="addItem(item.ISBN)" >Add</button>
+            </td>
+            <td>
               <span> {{item.ISBN}}</span>
             </td>
             <td>

@@ -35,7 +35,7 @@ export class BooksComponent implements OnInit {
   constructor(private http: HttpClient, private pagerService: PagerService) { }
 
   public ip_address: string = '/bookshelf-api/public/start.php/api/books/list/';
-
+  
   // array of all items to be paged
   private allItems: any[];
 
@@ -50,7 +50,6 @@ export class BooksComponent implements OnInit {
     // get dummy data
     this.loadNextPage();
   }
-
   loadNextPage() {
     if (!this.lock) {
       this.lock = true;
@@ -63,8 +62,16 @@ export class BooksComponent implements OnInit {
         });
     }
   }
-
   onScrollDown() {
     this.loadNextPage();
+  }
+
+  public add_item_api: string = '/bookshelf-api/public/start.php/api/cart/add/';
+  addItem(isbn:string){
+    let path =  this.add_item_api.concat(isbn);
+    this.http.post(path,this.model)
+    .subscribe(ret=>{
+
+    });
   }
 }
