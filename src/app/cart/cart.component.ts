@@ -65,8 +65,7 @@ export class CartComponent implements OnInit {
     let CartItems = JSON.parse(localStorage.getItem('CartItems'));
     this.http.post(path, CartItems)
       .subscribe(data => {
-        //this.router.navigateByUrl('cart');
-        location.reload();
+        this.router.navigateByUrl('/home');
       });
   }
 }
