@@ -1,43 +1,36 @@
-<div>
-  <div class="container">
-    <div class="text-center">
-      <h1>Shelf</h1>
-      <div *ngFor="let category of Categories" >
-          <button (click)="sort(category.ID_CATEGORY)">{{category.GENRE}}</button>
-      </div>
-      <div class="search-results" infinite-scroll (scrolled)="onScrollDown()" [scrollWindow]="false">
-        <table border="1">
-          <tr>
-            <th>ISBN</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Pages</th>
-            <th>Price</th>
-          </tr>
-          <tr *ngFor="let item of pagedItems">
-            <td>
-              <button (click)="addItem(item.ISBN)" >Add</button>
-            </td>
-            <td>
-              <span> {{item.ISBN}}</span>
-            </td>
-            <td>
-              <span> {{item.TITLE}}</span>
-            </td>
-            <td>
-              <span> {{item.AUTHOR}}</span>
-            </td>
-            <td>
-              <span> {{item.PAGES}}</span>
-            </td>
-            <td>
-              <span> {{item.PRICE}}</span>
-            </td>
-          </tr>
-        </table>
-
+<div class="container">
+  <h2>Bookshelf List</h2>
+  <p>this is the complete list of our books. take a look! if you find something interesting you can buy in at a reasonable price.
+  </p>
+  <div class="categories" *ngFor="let category of Categories">
+    <button class="btn btn-info btn-sm btn-categories" (click)="sort(category.ID_CATEGORY)">{{category.GENRE}}</button>
+  </div>
+  <div class="search-results" infinite-scroll (scrolled)="onScrollDown()" [scrollWindow]="false">
+    <div class="book" *ngFor="let item of pagedItems">
+      <img style="float:left; height:200px;" src="https://about.canva.com/wp-content/uploads/sites/3/2015/01/art_bookcover.png"
+        alt="">
+      <div class="offset-2">
+        <div class="row" style="margin-bottom: 5px;">
+          <span class="col-md-12 book-title">{{item.TITLE}}</span>
+        </div>
+        <div class="row">
+          <label class="col-md-1 book-label">Isbn:</label>
+          <span class="col-md-2">{{item.ISBN}}</span>
+        </div>
+        <div class="row">
+          <label class="col-md-1 book-label">Author:</label>
+          <span class="col-md-3">{{item.AUTHOR}}</span>
+        </div>
+        <div class="row">
+          <label class="col-md-1 book-label">Pages:</label>
+          <span class="col-md-1">{{item.PAGES}}</span>
+        </div>
+        <div class="row">
+          <label class="col-md-1 book-label">Price:</label>
+          <span class="col-md-1 book-price">{{item.PRICE}}€</span>
+        </div>
+        <button class="btn btn-success book-add" (click)="addItem(item.ISBN)">Add</button>
       </div>
     </div>
   </div>
-  <hr />
 </div>

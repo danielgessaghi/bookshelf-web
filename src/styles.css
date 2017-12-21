@@ -8,13 +8,49 @@ h1{
     text-align: center;
     font-size: 4em;
 }
+h2{
+    font-family: 'Kaushan Script', cursive;
+    font-size: 3em;
+}
+div.book{
+    background-color: rgb(245, 245, 245);
+    padding: 5px 15px;
+    box-shadow: 1px 3px 6px 0px darkgrey;
+    display: inline-block;
+    border-radius: 3px;
+    margin: 5px;
+    width: 99%;
+}
+.book-title{
+    font-size: larger;
+    font-weight: bold;
+    color: rgb(80, 80, 80);
+}
+.book-label{
+    font-size: 0.9em;
+}
+.book-head{
+    height: 200px;
+    margin: 10px 0px;
+    
+}
+.book-price{
+    color: rgb(255, 29, 29);
+    font-weight: bold;
+}
+.book-add{
+    border-radius: 20px;
+}
+div.categories{
+    display: inline-block;
+    
+}
+.btn-categories{
+    margin: 2px;
+}
 a.navbar-brand{
     font-size: large;
 }
-/*a.btn-logout{
-    margin-top: 10px;
-    font-size: small;
-}*/
 a.navbar-brand{
     font-family: 'Kaushan Script', cursive;
 }
