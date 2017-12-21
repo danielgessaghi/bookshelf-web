@@ -4,6 +4,7 @@
     <table class="table table-striped text-center">
       <thead>
         <tr>
+          <th></th>
           <th>Book ISBN</th>
           <th>Book Title</th>
           <th>Book Author</th>
@@ -13,6 +14,11 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of CartItems">
+          <td>
+            <a (click)="deleteItem(item.ID_ORDER)" class="btn btn-danger">
+              <i class="fa fa-times-circle" aria-hidden="true"></i>
+            </a>
+          </td>
           <td>
             {{item.BOOK.ISBN}}
           </td>
@@ -34,7 +40,9 @@
       </tbody>
     </table>
     <div class="form-group offset-11">
-      <button class="btn btn-success">Order <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+      <button class="btn btn-success">Order
+        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+      </button>
     </div>
   </form>
 </div>

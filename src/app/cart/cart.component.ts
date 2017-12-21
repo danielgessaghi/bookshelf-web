@@ -59,4 +59,14 @@ export class CartComponent implements OnInit {
       i++;
     }
   }
+  private del_api: string = '/bookshelf-api/public/start.php/api/cart/delete/';
+  deleteItem(nOrder: string) {
+    let path = this.del_api.concat(nOrder);
+    let CartItems = JSON.parse(localStorage.getItem('CartItems'));
+    this.http.post(path, CartItems)
+      .subscribe(data => {
+        //this.router.navigateByUrl('cart');
+        location.reload();
+      });
+  }
 }
