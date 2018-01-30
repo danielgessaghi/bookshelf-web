@@ -5,32 +5,32 @@
 </div>
 <!--books-->
 
+<br>
 
 <div class="book" *ngFor="let item of pagedItems">
-  <img style="float:left; height:200px;" src="https://about.canva.com/wp-content/uploads/sites/3/2015/01/art_bookcover.png"
-    alt="">
-  <div class="offset-2">
-    <div class="row" style="margin-bottom: 5px;">
-      <span class="col-md-12 book-title">{{item.TITLE}}</span>
-    </div>
-    <div class="row">
-      <label class="col-md-1 book-label">Isbn:</label>
-      <span class="col-md-2">{{item.ISBN}}</span>
-    </div>
-    <div class="row">
-      <label class="col-md-1 book-label">Author:</label>
-      <span class="col-md-3">{{item.AUTHOR}}</span>
-    </div>
-    <div class="row">
-      <label class="col-md-1 book-label">Pages:</label>
-      <span class="col-md-1">{{item.PAGES}}</span>
-    </div>
-    <div class="row">
-      <label class="col-md-1 book-label">Price:</label>
-      <span class="col-md-1 book-price">{{item.PRICE}}€</span>
-    </div>
-    <button class="btn btn-success book-add" (click)="addItem(item.ISBN)">Add</button>
+  <div class="row">
+    <img class="img-fluid" style="height:500px;" src="https://about.canva.com/wp-content/uploads/sites/3/2015/01/art_bookcover.png">
   </div>
+  <div class="row">
+    <span *ngIf="item.TITLE.length>25" class="book-title">{{item.TITLE.substr(0,25).concat("...")}}</span>
+    <span *ngIf="item.TITLE.length<=25" class="book-title">{{item.TITLE}}</span>
+  </div>
+  <div class="row">
+    <label class="book-label">Isbn:</label>
+    <span>{{item.ISBN}}</span>
+
+    <label class="book-label">Author:</label>
+    <span>{{item.AUTHOR}}</span>
+  </div>
+  <div class="row">
+    <label class="book-label">Pages:</label>
+    <span>{{item.PAGES}}</span>
+
+    <label class="book-label">Price:</label>
+    <span class="book-price">{{item.PRICE}}€</span>
+    <button  class="btn btn-success book-add" (click)="addItem(item.ISBN)">Add</button>
+  </div>
+
 </div>
 
 <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()"></div>
