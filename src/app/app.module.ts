@@ -1,15 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
 import { AppComponent } from './app.component';
-
-
-//
 import { FormsModule }    from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
-// used to create fake backend
 import { fakeBackendProvider } from './_helpers/index';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
@@ -20,14 +13,12 @@ import { AlertService, AuthenticationService, UserService } from './_services/in
 import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
-
 import { HttpClientModule } from '@angular/common/http';
 import { BooksComponent } from './books/index';
 import { CartComponent } from './cart/index';
-
 import { PagerService } from './_models/book';
-
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { NgHttpLoaderModule } from 'ng-http-loader/ng-http-loader.module';
 
 @NgModule({
   declarations: [
@@ -45,7 +36,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
         HttpModule,
         routing,
         HttpClientModule,
-        InfiniteScrollModule
+        InfiniteScrollModule,
+        NgHttpLoaderModule
   ],
   providers: [
         AuthGuard,
