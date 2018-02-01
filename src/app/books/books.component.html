@@ -9,25 +9,28 @@
 
 <div class="book" *ngFor="let item of pagedItems">
   <div class="row">
-    <img class="img-fluid" style="height:500px;" src="https://about.canva.com/wp-content/uploads/sites/3/2015/01/art_bookcover.png">
+    <img class="book-img" src="https://about.canva.com/wp-content/uploads/sites/3/2015/01/art_bookcover.png">
   </div>
   <div class="row">
-    <span *ngIf="item.TITLE.length>25" class="book-title">{{item.TITLE.substr(0,25).concat("...")}}</span>
-    <span *ngIf="item.TITLE.length<=25" class="book-title">{{item.TITLE}}</span>
+    <span *ngIf="item.TITLE.length>25" title="{{item.TITLE}}" class="book-title">{{item.TITLE.substr(0,25).concat("...")}}</span>
+    <span *ngIf="item.TITLE.length<=25"  title="{{item.TITLE}}" class="book-title">{{item.TITLE}}</span>
   </div>
   <div class="row">
-    <label class="book-label">Isbn:</label>
-    <span>{{item.ISBN}}</span>
+    <!--label class="book-label">Isbn:</label>
+    <span>{{item.ISBN}}</span-->
 
     <label class="book-label">Author:</label>
     <span>{{item.AUTHOR}}</span>
   </div>
   <div class="row">
-    <label class="book-label">Pages:</label>
-    <span>{{item.PAGES}}</span>
+    <!--label class="book-label">Pages:</label>
+    <span>{{item.PAGES}}</span-->
 
     <label class="book-label">Price:</label>
     <span class="book-price">{{item.PRICE}}€</span>
+    
+  </div>
+  <div class="row"style="margin: auto;" >
     <button  class="btn btn-success book-add" (click)="addItem(item.ISBN)">Add</button>
   </div>
 
