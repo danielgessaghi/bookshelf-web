@@ -50,15 +50,16 @@ export class CartComponent implements OnInit {
     let i = 0;
     let CartItems = JSON.parse(localStorage.getItem('CartItems'));
     while (CartItems[i] != null) {
+
       this.http.post(this.order_api, CartItems[i])
         .subscribe(ret => {
-          if (ret) {
-            this.router.navigateByUrl('./home');
-          }
+          
         })
       i++;
     }
+    this.router.navigateByUrl('./home');
   }
+
   private del_api: string = '/bookshelf-api/public/start.php/api/cart/delete/';
   deleteItem(nOrder: string) {
     let path = this.del_api.concat(nOrder);
