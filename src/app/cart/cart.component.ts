@@ -43,15 +43,16 @@ export class CartComponent implements OnInit {
   /*  newQuantity(ID_ORDER : number){
      let item =  this.CartItems.find(id => id.ID_ORDER == ID_ORDER);
      this.CartItems.push(item);
-    }*/
+    }
+    */
 
   public elements: Array<number>;
   order() {
     let i = 0;
-    let CartItems = JSON.parse(localStorage.getItem('CartItems'));
-    while (CartItems[i] != null) {
+    //let CartItems = JSON.parse(localStorage.getItem('CartItems'));
+    while (this.CartItems[i] != null) {
 
-      this.http.post(this.order_api, CartItems[i])
+      this.http.post(this.order_api, this.CartItems[i])
         .subscribe(ret => {
           
         })
@@ -68,5 +69,16 @@ export class CartComponent implements OnInit {
       .subscribe(data => {
         this.router.navigateByUrl('/home');
       });
+  }
+
+  private del_ord_api: string = '/bookshelf-api/public/start.php/api/cart/delete/';
+  deleteOrder(){
+    let item_order = this.CartItems[0].ID_ORDER.toString(); 
+    let path1 = this.del_ord_api.concat(item_order);
+    this.http.post(path1, null)
+      .subscribe(data => {
+        
+      });
+      this.router.navigateByUrl('/home');
   }
 }
