@@ -1,1 +1,13 @@
 <h1>Di mano in mano srl</h1>
+<div>
+    <h2>TOP 3 Books</h2>
+    <div  *ngFor="let item of books">
+        {{item.ID_ITEM}}
+        {{item.SUM}}
+    </div>
+    <h2>TOP 3 Categories</h2>
+    <div *ngFor="let item of categories">
+            {{item.GENRE}}
+            {{item.SUM}}
+    </div>
+</div>
