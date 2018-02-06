@@ -44,7 +44,7 @@ export class CartComponent implements OnInit {
      let item =  this.CartItems.find(id => id.ID_ORDER == ID_ORDER);
      this.CartItems.push(item);
     }
-    */
+  */
 
   public elements: Array<number>;
   order() {
@@ -61,11 +61,11 @@ export class CartComponent implements OnInit {
     this.router.navigateByUrl('./home');
   }
 
-  private del_api: string = '/bookshelf-api/public/start.php/api/cart/delete/';
+  private del_api: string = '/bookshelf-api/public/start.php/api/cart/delete/item/';
   deleteItem(nOrder: string) {
     let path = this.del_api.concat(nOrder);
     let CartItems = JSON.parse(localStorage.getItem('CartItems'));
-    this.http.post(path, CartItems)
+    this.http.post(path, null)
       .subscribe(data => {
         this.router.navigateByUrl('/home');
       });

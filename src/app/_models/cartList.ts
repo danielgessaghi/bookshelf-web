@@ -5,11 +5,13 @@ import { getLocaleDateTimeFormat } from "@angular/common/src/i18n/locale_data_ap
 import { Data } from "@angular/router/src/config";
 export class CartItem {
     constructor() {
+        this.ID_ORDER_ITEM = 0;
         this.ID_ORDER = 0;
         this.QUANTITY = 0;
         this.TOT_PRICE = 0;
         this.ORDER_DATE = new Date().toISOString; 
     }
+    ID_ORDER_ITEM:number;
     ORDER_DATE: Data;
     TOT_PRICE:number;
     ID_ORDER: number;
