@@ -13,7 +13,7 @@
   </div>
   <div class="row">
     <span *ngIf="item.TITLE.length>25" title="{{item.TITLE}}" class="book-title">{{item.TITLE.substr(0,25).concat("...")}}</span>
-    <span *ngIf="item.TITLE.length<=25"  title="{{item.TITLE}}" class="book-title">{{item.TITLE}}</span>
+    <span *ngIf="item.TITLE.length<=25" title="{{item.TITLE}}" class="book-title">{{item.TITLE}}</span>
   </div>
   <div class="row">
     <!--label class="book-label">Isbn:</label>
@@ -28,10 +28,10 @@
 
     <label class="book-label">Price:</label>
     <span class="book-price">{{item.PRICE}}€</span>
-    
+
   </div>
-  <div class="row"style="margin: auto;" >
-    <button  class="btn btn-success book-add" (click)="addItem(item.ISBN)">Add</button>
+  <div class="row" style="margin: auto;">
+    <button class="btn btn-success book-add" (click)="addItem(item.ISBN)">Add</button>
   </div>
 
 </div>

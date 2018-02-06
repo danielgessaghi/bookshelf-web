@@ -1,13 +1,21 @@
 <h1>Di mano in mano srl</h1>
-<div>
-    <h2>TOP 3 Books</h2>
-    <div  *ngFor="let item of books">
+<h2>TOP 3 Books</h2>
+<div class="book" *ngFor="let item of books">
+    <div class="row">
+        <img class="book-img" src="https://about.canva.com/wp-content/uploads/sites/3/2015/01/art_bookcover.png">
+    </div>
+    <div class="row">
         {{item.ID_ITEM}}
+    </div>
+    <div class="row">
         {{item.SUM}}
     </div>
-    <h2>TOP 3 Categories</h2>
-    <div *ngFor="let item of categories">
-            {{item.GENRE}}
-            {{item.SUM}}
-    </div>
+</div>
+<h2>TOP 3 Categories</h2>
+<div class="mr-sm-2" style="display: inline-block" *ngFor="let item of categories">
+    <h3>
+        <span class="badge badge-primary">
+            {{item.GENRE}} {{item.SUM}}
+        </span>
+    </h3>
 </div>
