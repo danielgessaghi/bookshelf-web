@@ -1,12 +1,13 @@
 <h2>Bookshelf List</h2>
-<!-- categories-->
-<div class="categories" *ngFor="let category of Categories">
+<!--div class="categories" *ngFor="let category of Categories">
   <button class="btn btn-info btn-sm btn-categories" (click)="sort(category.ID_CATEGORY)">{{category.GENRE}}</button>
-</div>
-<!--books-->
-
+</div-->
+<ul class="nav nav-pills">
+  <li class="nav-item" *ngFor="let category of Categories">
+    <button class="btn btn-info btn-sm btn-categories" (click)="sort(category.ID_CATEGORY)">{{category.GENRE}}</button>
+  </li>
+</ul>
 <br>
-
 <div class="book" *ngFor="let item of pagedItems">
   <div class="row">
     <img class="book-img" src="https://about.canva.com/wp-content/uploads/sites/3/2015/01/art_bookcover.png">
@@ -16,24 +17,15 @@
     <span *ngIf="item.TITLE.length<=25" title="{{item.TITLE}}" class="book-title">{{item.TITLE}}</span>
   </div>
   <div class="row">
-    <!--label class="book-label">Isbn:</label>
-    <span>{{item.ISBN}}</span-->
-
     <label class="book-label">Author:</label>
     <span>{{item.AUTHOR}}</span>
   </div>
   <div class="row">
-    <!--label class="book-label">Pages:</label>
-    <span>{{item.PAGES}}</span-->
-
     <label class="book-label">Price:</label>
     <span class="book-price">{{item.PRICE}}€</span>
-
   </div>
   <div class="row" style="margin: auto;">
     <button class="btn btn-success book-add" (click)="addItem(item.ISBN)">Add</button>
   </div>
-
 </div>
-
 <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()"></div>

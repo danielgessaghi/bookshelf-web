@@ -1,21 +1,34 @@
 <h1>Di mano in mano srl</h1>
-<h2>TOP 3 Books</h2>
-<div class="book" *ngFor="let item of books">
-    <div class="row">
-        <img class="book-img" src="https://about.canva.com/wp-content/uploads/sites/3/2015/01/art_bookcover.png">
+<div class="row">
+    <div class="col-8">
+        <div class="card">
+            <h2 class="card-header">Bestsellers Books</h2>
+            <div class="card-block">
+                <div class="card-group">
+                    <div class="card" *ngFor="let item of books">
+                        <img class="card-img-top" src="https://about.canva.com/wp-content/uploads/sites/3/2015/01/art_bookcover.png">
+                        <div class="card-block">
+                            <h4 class="card-title">{{item.ID_ITEM}}</h4>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">books sold: &ensp; {{item.SUM}}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="row">
-        {{item.ID_ITEM}}
+    <div class="col-4">
+        <div class="card">
+            <h2 class="card-header">Top 3 Categories</h2>
+            <div class="card-block">
+                <ul class="list-group" *ngFor="let item of categories">
+                    <li class="list-group-item justify-content-between">
+                        {{item.GENRE}}
+                        <span class="badge badge-default badge-pill" style="float:right;">{{item.SUM}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <div class="row">
-        {{item.SUM}}
-    </div>
-</div>
-<h2>TOP 3 Categories</h2>
-<div class="mr-sm-2" style="display: inline-block" *ngFor="let item of categories">
-    <h3>
-        <span class="badge badge-primary">
-            {{item.GENRE}} {{item.SUM}}
-        </span>
-    </h3>
 </div>
