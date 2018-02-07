@@ -37,7 +37,7 @@ export class ReturnsComponent implements OnInit {
         this.http.get<Array<Returns>>(this.api_returns)
             .subscribe(data => {
                 //debugger; 
-                //this.ReturnsItems = data;
+                this.ReturnsItems = data;
                 localStorage.setItem('ReturnItems', JSON.stringify(data));
             });
     }

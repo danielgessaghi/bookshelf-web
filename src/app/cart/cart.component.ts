@@ -7,6 +7,9 @@ import { UserService } from '../_services/index';
 import { CartItem } from '../_models/cartList';
 import { forEach } from '@angular/router/src/utils/collection';
 import { Book } from '../_models/book';
+import { Order } from '../_models/order';
+import { Md5 } from 'ts-md5/dist/md5';
+import { Datetime } from '../_models/DateTime';
 
 @Component({
   selector: 'cart',
@@ -15,6 +18,7 @@ import { Book } from '../_models/book';
 
 export class CartComponent implements OnInit {
   currentUser: User;
+  public Cart: Order = new Order();
   public CartItem: CartItem = new CartItem();
   public CartItems: Array<CartItem>;
   loading = false;
@@ -37,14 +41,20 @@ export class CartComponent implements OnInit {
       .subscribe(data => {
         //debugger; 
         this.CartItems = data;
-        localStorage.setItem('CartItems', JSON.stringify(this.CartItems));
       });
-  }
-  /*  newQuantity(ID_ORDER : number){
-     let item =  this.CartItems.find(id => id.ID_ORDER == ID_ORDER);
-     this.CartItems.push(item);
+    let DateTime = new Datetime();
+    let md5 = new Md5();
+    let br = 0;
+    while (this.CartItems[br] != null) {
+
+      let user_date:string = this.currentUser.USERNAME.concat(DateTime.now());
+      md5.appendStr(user_date);
+      
+      let ID_NEW: string = md5.end().toString();
+      this.CartItems[br].ID_ORDER = ID_NEW;
     }
-  */
+    localStorage.setItem('CartItems', JSON.stringify(this.CartItems));
+  }
 
   public elements: Array<number>;
   order() {
@@ -54,7 +64,7 @@ export class CartComponent implements OnInit {
 
       this.http.post(this.order_api, this.CartItems[i])
         .subscribe(ret => {
-          
+
         })
       i++;
     }
@@ -72,13 +82,13 @@ export class CartComponent implements OnInit {
   }
 
   private del_ord_api: string = '/bookshelf-api/public/start.php/api/cart/delete/';
-  deleteOrder(){
-    let item_order = this.CartItems[0].ID_ORDER.toString(); 
+  deleteOrder() {
+    let item_order = this.CartItems[0].ID_ORDER.toString();
     let path1 = this.del_ord_api.concat(item_order);
     this.http.post(path1, null)
       .subscribe(data => {
-        
+
       });
-      this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/home');
   }
 }

@@ -28,6 +28,7 @@
     "ngx-infinite-scroll": "^0.7.2",
     "npm": "^5.6.0",
     "rxjs": "^5.5.2",
+    "ts-md5": "^1.2.4",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
