@@ -40,7 +40,7 @@
                         </form>
                     </td>
                     <td>
-                        <button (click)="ItemReturn(returns.ID_ORDER_ITEMS)" class="btn btn-success">
+                        <button (click)="ItemReturn(returns.ID_ORDER_ITEMS)" class="btn btn-success" [disabled]="returns.QUANTITY<=0">
                              Give Back  &nbsp;<i class="fa fa-arrow-right" aria-hidden="true"></i>
                         </button>
                     </td>
