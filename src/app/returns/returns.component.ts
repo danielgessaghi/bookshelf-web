@@ -44,19 +44,20 @@ export class ReturnsComponent implements OnInit {
 
 
     private del_api: string = '/bookshelf-api/public/start.php/api/returns/delete/';
-    
+
     ItemReturn(nReturns: string) {
         let path = this.del_api.concat(nReturns);
-        let items: Array<Returns> = JSON.parse(localStorage.getItem('ReturnsItems'));
-        let i:number = 0;
-        while (this.ReturnsItems[i]!= null) {
-            if (this.ReturnsItems[i].QUANTITY >= 0 && this.ReturnsItems[i].QUANTITY < items[i].QUANTITY ) {
-                this.http.post(path, this.ReturnsItems[i].QUANTITY )
+        let items: Array<Returns> = JSON.parse(localStorage.getItem('ReturnItems'));
+        let i: number = 0;
+        while (this.ReturnsItems[i] != null) {
+            if (this.ReturnsItems[i].QUANTITY >= 0 && this.ReturnsItems[i].QUANTITY <= items[i].QUANTITY) {
+                this.http.post(path, this.ReturnsItems[i].QUANTITY)
                     .subscribe(data => {
-                        this.router.navigateByUrl('/returns');
+
                     });
             }
-            
+            i++;
         }
+        this.router.navigateByUrl('/returns');
     }
 }
