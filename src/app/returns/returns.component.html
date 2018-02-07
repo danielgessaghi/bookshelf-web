@@ -1,0 +1,52 @@
+<div class="col-md-12">
+    <h2>Give back your items ;-)</h2>
+    <form name="form" (ngSubmit)="f.form.valid && order()" #f="ngForm" novalidate>
+        <table class="table table-striped text-center">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Book ISBN</th>
+                    <th>Book Title</th>
+                    <th>Returning status</th>
+                    <th>Book Price</th>
+                    <th>Quantity</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let returns of ReturnsItems">
+
+                    <td>
+                        {{returns.ID_ORDER_ITEMS}}
+                    </td>
+                    <td>
+                        {{returns.ISBN}}
+                    </td>
+                    <td>
+                        {{returns.TITLE}}
+                    </td>
+                    <td class="text-danger">
+                        {{returns.ID_RETURNING_STATUS}}
+                    </td>
+                    <td>
+                        {{returns.PRICE}}
+                    </td>
+                    <td>
+                        {{returns.QUANTITY}}
+                    </td>
+                    <td>
+                        <form>
+                            <input type="number" name="QUANTITY" [(ngModel)]="returns.QUANTITY" #quantity="ngModel" required>
+                        </form>
+                    </td>
+                    <td>
+                        <button (click)="ItemReturn(returns.ID_ORDER_ITEMS)" class="btn btn-success">
+                             Give Back  &nbsp;<i class="fa fa-arrow-right" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </form>
+</div>

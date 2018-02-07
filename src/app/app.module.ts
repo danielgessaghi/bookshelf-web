@@ -19,6 +19,7 @@ import { CartComponent } from './cart/index';
 import { PagerService } from './_models/book';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgHttpLoaderModule } from 'ng-http-loader/ng-http-loader.module';
+import { ReturnsComponent } from './returns/index';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NgHttpLoaderModule } from 'ng-http-loader/ng-http-loader.module';
         LoginComponent,
         RegisterComponent,
         BooksComponent,
-        CartComponent
+        CartComponent,
+        ReturnsComponent
   ],
   imports: [
         BrowserModule,

@@ -5,6 +5,7 @@ import { RegisterComponent } from './register/index';
 import { AuthGuard } from './_guards/index';
 import { BooksComponent } from './books/index';
 import {  CartComponent} from './cart/index';
+import { ReturnsComponent } from './returns/index';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -13,6 +14,7 @@ const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'books', component: BooksComponent },
     { path: 'cart', component: CartComponent },
+    { path: 'returns', component: ReturnsComponent },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
