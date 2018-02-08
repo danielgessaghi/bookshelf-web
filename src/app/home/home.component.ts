@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
     currentUser: User;
     public TopBook: TopBook = new TopBook();
     public TopCategories: TopCategories = new TopCategories();
-    
+
     books: Array<TopBook>;
     categories: Array<TopCategories>;
     users: User[] = [];
@@ -28,16 +28,17 @@ export class HomeComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private alertService: AlertService,
-        private userService: UserService
-        ) {
+        private userService: UserService,
+
+    ) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.categories = JSON.parse(localStorage.getItem('TopCategories'));
         this.books = JSON.parse(localStorage.getItem('TopBook'));
     }
-    private top_book_path:string = '/bookshelf-api/public/start.php/api/top-3/book';
-    private top_category_path:string = '/bookshelf-api/public/start.php/api/top-3/category';
+    private top_book_path: string = '/bookshelf-api/public/start.php/api/top-3/book';
+    private top_category_path: string = '/bookshelf-api/public/start.php/api/top-3/category';
     ngOnInit() {
-       // this.loadAllUsers();
+        // this.loadAllUsers();
 
         this.http.get<Array<TopCategories>>(this.top_category_path)
             .subscribe(data => {
