@@ -33,7 +33,7 @@
           </td>
           <td>
             <form>
-              <input type="number" name="QUANTITY" [(ngModel)]="item.QUANTITY" #quantity="ngModel" required>
+              <input type="number" name="QUANTITY" [(ngModel)]="item.QUANTITY" #quantity="ngModel" min="1" max="item.QUANTITY" required>
             </form>
           </td>
         </tr>
