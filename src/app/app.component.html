@@ -24,21 +24,12 @@
             </li>
         </ul>
         <ul *ngIf="this.isLogged" class="navbar-nav mr-0">
-            <li class="nav-item">
+            <li class="nav-item"  *ngIf="!this.isAdmin">
                 <a class="nav-link" [routerLink]="['/cart']">
                     <i class="fa fa-shopping-cart"></i>
                     Cart
                 </a>
             </li>
-<<<<<<< HEAD
-
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/admin_returns']">
-                    Check Returns Books
-                </a>
-            </li>
-
-=======
             
             <li *ngIf="this.isAdmin" class="nav-item">
                 <a class="nav-link" [routerLink]="['/admin_returns']">
@@ -47,8 +38,7 @@
                 </a>
             </li>
             
->>>>>>> 8f1ff6cda35a10381e1489cdcc34bbd6f3c73753
-            <li class="nav-item">
+            <li class="nav-item"  *ngIf="!this.isAdmin">
                 <a class="nav-link" [routerLink]="['/returns']">
                     <i class="fa fa-truck" aria-hidden="true"></i>
                     Give Back Books
