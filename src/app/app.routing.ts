@@ -6,6 +6,7 @@ import { AuthGuard } from './_guards/index';
 import { BooksComponent } from './books/index';
 import {  CartComponent} from './cart/index';
 import { ReturnsComponent } from './returns/index';
+import { AdminReturnsComponent } from './admin_returns/index';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
     { path: 'books', component: BooksComponent },
     { path: 'cart', component: CartComponent },
     { path: 'returns', component: ReturnsComponent },
+    { path: 'admin_returns', component: AdminReturnsComponent },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }

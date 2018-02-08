@@ -20,6 +20,7 @@ import { PagerService } from './_models/book';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgHttpLoaderModule } from 'ng-http-loader/ng-http-loader.module';
 import { ReturnsComponent } from './returns/index';
+import { AdminReturnsComponent } from './admin_returns/index';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ReturnsComponent } from './returns/index';
         RegisterComponent,
         BooksComponent,
         CartComponent,
-        ReturnsComponent
+        ReturnsComponent,
+        AdminReturnsComponent
   ],
   imports: [
         BrowserModule,
