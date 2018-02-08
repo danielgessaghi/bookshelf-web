@@ -31,7 +31,7 @@ export class AdminReturnsComponent implements OnInit {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
-    public api_returns: string = '/bookshelf-api/public/start.php/api/returns/list';
+    public api_returns: string = '/bookshelf-api/public/start.php/api/returns_admin/list';
 
     ngOnInit() {
         this.http.get<Array<Returns>>(this.api_returns)
@@ -43,21 +43,28 @@ export class AdminReturnsComponent implements OnInit {
     }
 
 
-    private del_api: string = '/bookshelf-api/public/start.php/api/returns/delete/';
+    private conf_api: string = '/bookshelf-api/public/start.php/api/returns_admin/confirmed/';
 
-    ItemReturn(nReturns: string) {
-        let path = this.del_api.concat(nReturns);
+    ItemConfirmed(nReturns: string) {
+        let path = this.conf_api.concat(nReturns);
         let items: Array<Returns> = JSON.parse(localStorage.getItem('ReturnItems'));
         let i: number = 0;
-        while (this.ReturnsItems[i] != null) {
-            if (this.ReturnsItems[i].QUANTITY >= 0 && this.ReturnsItems[i].QUANTITY <= items[i].QUANTITY) {
-                this.http.post(path, this.ReturnsItems[i].QUANTITY)
+        this.http.post(path, null)
                     .subscribe(data => {
 
                     });
-            }
-            i++;
-        }
-        this.router.navigateByUrl('/returns');
+    }
+
+
+    private compl_api: string = '/bookshelf-api/public/start.php/api/returns_admin/complited/';
+
+    ItemCompleted(nReturns: string) {
+        let path = this.compl_api.concat(nReturns);
+        let items: Array<Returns> = JSON.parse(localStorage.getItem('ReturnItems'));
+        let i: number = 0;
+        this.http.post(path, null)
+            .subscribe(data => {
+
+            });
     }
 }
