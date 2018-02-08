@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Returns } from '../_models/returns';
 import { CartItem } from '../_models/cartList';
 import { ReturnStatement } from '@angular/compiler/src/output/output_ast';
+import { forEach } from '@angular/router/src/utils/collection';
 
 
 
@@ -45,19 +46,19 @@ export class ReturnsComponent implements OnInit {
 
     private del_api: string = '/bookshelf-api/public/start.php/api/returns/delete/';
 
-    ItemReturn(nReturns: string) {
-        let path = this.del_api.concat(nReturns);
+    ItemReturn(nReturns: number) {
+        let path = this.del_api.concat(nReturns.toString());
         let items: Array<Returns> = JSON.parse(localStorage.getItem('ReturnItems'));
-        let i: number = 0;
-        while (this.ReturnsItems[i] != null) {
-            if (this.ReturnsItems[i].QUANTITY >= 0 && this.ReturnsItems[i].QUANTITY <= items[i].QUANTITY) {
-                this.http.post(path, this.ReturnsItems[i].QUANTITY)
+        this.ReturnsItems.forEach(element => {
+            if (element.QUANTITY >= 0 && element.ID_ORDER_ITEMS == nReturns) {
+                this.http.post(path, element)
                     .subscribe(data => {
-
+    
                     });
             }
-            i++;
-        }
+        });
+
+        
         this.router.navigateByUrl('/returns');
     }
 }
