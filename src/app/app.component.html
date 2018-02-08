@@ -30,6 +30,14 @@
                     Cart
                 </a>
             </li>
+            
+            <li *ngIf="this.isAdmin" class="nav-item">
+                <a class="nav-link" [routerLink]="['/admin_returns']">
+                    <i class="fa fa-truck" aria-hidden="true"></i>
+                    Retuns
+                </a>
+            </li>
+            
             <li class="nav-item">
                 <a class="nav-link" [routerLink]="['/returns']">
                     <i class="fa fa-truck" aria-hidden="true"></i>
