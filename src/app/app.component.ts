@@ -12,28 +12,11 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
  
   title: "app";
-  currentUser: User ;
-  isLogged: boolean;
-  isAdmin:boolean;
 
-  constructor(private userService: UserService, private router: Router,) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (this.currentUser) 
-    {
-      this.isLogged = this.currentUser.Logged;
-      if (this.currentUser.ID_GROUP == 2) {
-        this.isAdmin  = true;
-      } else {
-        this.isAdmin = false;
-      }
-    } 
-    else 
-    {
-      this.isLogged = false;
-    }
+  constructor(private userService: UserService, private router: Router, protected auth: AuthenticationService) {
+    
   }
   ngOnInit(): void {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.router.navigateByUrl('/home');
   }
 

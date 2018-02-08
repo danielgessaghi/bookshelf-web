@@ -8,9 +8,17 @@ export class AuthenticationService {
     private ip_address: string = '/bookshelf-api/public/start.php/api/login';
     constructor(private http: HttpClient) {}
 
-    private isLogged: boolean;
+    private isLogged: boolean = false;
     IsLogged(): boolean {
         return this.isLogged;
+    }
+
+    get IsAdmin(): boolean {
+        return this.user && this.user.ID_GROUP == 2;
+    }
+
+    get CurrentUser(): User {
+        return this.user;
     }
 
     user: User;

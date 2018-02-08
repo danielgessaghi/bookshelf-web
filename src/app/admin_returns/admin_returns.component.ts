@@ -58,7 +58,7 @@ export class AdminReturnsComponent implements OnInit {
     }
 
 
-    private compl_api: string = '/bookshelf-api/public/start.php/api/returns_admin/complited/';
+    private compl_api: string = '/bookshelf-api/public/start.php/api/returns_admin/completed/';
 
     ItemCompleted(nReturns: string) {
         let path = this.compl_api.concat(nReturns);
