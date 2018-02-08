@@ -20,6 +20,8 @@ export class AdminReturnsComponent implements OnInit {
     public ReturnsItems: Array<Returns>;
     loading = false;
     returnUrl: string;
+    isConfermed:boolean;
+    isCompleted:boolean;
 
     constructor(
         private http: HttpClient,
@@ -67,4 +69,7 @@ export class AdminReturnsComponent implements OnInit {
 
             });
     }
+
+
+
 }

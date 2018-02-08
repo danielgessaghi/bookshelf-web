@@ -32,13 +32,13 @@
                         {{returns.QUANTITY}}
                     </td>
                     <td>
-                        <button (click)="ItemConfirmed(returns.ID_ORDER_ITEMS)" class="btn btn-success" disabled="returns.ID_RETURNING_STATUS=2">
+                        <button (click)="ItemConfirmed(returns.ID_ORDER_ITEMS)" class="btn btn-success"  [disabled]="returns.ID_RETURNING_STATUS==2">
                             Confirmed &nbsp;
                             <i class="fa fa-arrow-right" aria-hidden="true"></i>
                         </button>
                     </td>
                     <td>
-                        <button (click)="ItemCompleted(returns.ID_ORDER_ITEMS)" class="btn btn-success" disabled="returns.ID_RETURNING_STATUS=1">
+                        <button (click)="ItemCompleted(returns.ID_ORDER_ITEMS)" class="btn btn-success" [disabled]="returns.ID_RETURNING_STATUS==1">
                             Completed &nbsp;
                             <i class="fa fa-arrow-right" aria-hidden="true"></i>
                         </button>
