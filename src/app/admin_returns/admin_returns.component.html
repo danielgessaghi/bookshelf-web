@@ -8,8 +8,8 @@
                     <th>Book ISBN</th>
                     <th>Book Title</th>
                     <th>Returning status</th>
-                    <th>Book Price</th>
                     <th>Quantity</th>
+                    <th></th>
                     <th></th>
                 </tr>
             </thead>
@@ -29,19 +29,17 @@
                         {{returns.ID_RETURNING_STATUS}}
                     </td>
                     <td>
-                        {{returns.PRICE}}
-                    </td>
-                    <td>
                         {{returns.QUANTITY}}
                     </td>
                     <td>
-                        <form>
-                            <input type="number" name="QUANTITY" [(ngModel)]="returns.QUANTITY" #quantity="ngModel" required>
-                        </form>
+                        <button (click)="ItemConfirmed(returns.ID_ORDER_ITEMS)" class="btn btn-success" disabled="returns.ID_RETURNING_STATUS=2">
+                            Confirmed &nbsp;
+                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                        </button>
                     </td>
                     <td>
-                        <button (click)="ItemReturn(returns.ID_ORDER_ITEMS)" class="btn btn-success" [disabled]="returns.QUANTITY<=0">
-                            Give Back &nbsp;
+                        <button (click)="ItemCompleted(returns.ID_ORDER_ITEMS)" class="btn btn-success" disabled="returns.ID_RETURNING_STATUS=1">
+                            Completed &nbsp;
                             <i class="fa fa-arrow-right" aria-hidden="true"></i>
                         </button>
                     </td>
