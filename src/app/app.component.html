@@ -18,34 +18,34 @@
                     <i class="fa fa-book" aria-hidden="true"></i> Books</a>
             </li>
         </ul>
-        <ul *ngIf="!this.isLogged" class="navbar-nav mr-0">
+        <ul *ngIf="!this.auth.IsLogged()" class="navbar-nav mr-0">
             <li class="nav-item">
                 <a class="btn btn-dark btn-logout" [routerLink]="['/login']">Login</a>
             </li>
         </ul>
-        <ul *ngIf="this.isLogged" class="navbar-nav mr-0">
-            <li class="nav-item"  *ngIf="!this.isAdmin">
+        <ul *ngIf="this.auth.IsLogged()" class="navbar-nav mr-0">
+            <li class="nav-item"  *ngIf="!this.auth.IsAdmin">
                 <a class="nav-link" [routerLink]="['/cart']">
                     <i class="fa fa-shopping-cart"></i>
                     Cart
                 </a>
             </li>
             
-            <li *ngIf="this.isAdmin" class="nav-item">
+            <li *ngIf="this.auth.IsAdmin" class="nav-item">
                 <a class="nav-link" [routerLink]="['/admin_returns']">
                     <i class="fa fa-truck" aria-hidden="true"></i>
                     Retuns
                 </a>
             </li>
             
-            <li class="nav-item"  *ngIf="!this.isAdmin">
+            <li class="nav-item"  *ngIf="!this.auth.IsAdmin">
                 <a class="nav-link" [routerLink]="['/returns']">
                     <i class="fa fa-truck" aria-hidden="true"></i>
                     Give Back Books
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Welcome {{currentUser.FIRSTNAME}}
+                <a class="nav-link" href="#">Welcome {{this.auth.CurrentUser.FIRSTNAME}}
                 </a>
             </li>
             <li class="nav-item">
