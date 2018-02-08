@@ -41,19 +41,9 @@ export class CartComponent implements OnInit {
       .subscribe(data => {
         //debugger; 
         this.CartItems = data;
+        localStorage.setItem('CartItems', JSON.stringify(this.CartItems));
       });
-    let DateTime = new Datetime();
-    let md5 = new Md5();
-    let br = 0;
-    while (this.CartItems[br] != null) {
 
-      let user_date:string = this.currentUser.USERNAME.concat(DateTime.now());
-      md5.appendStr(user_date);
-      
-      let ID_NEW: string = md5.end().toString();
-      this.CartItems[br].ID_ORDER = ID_NEW;
-    }
-    localStorage.setItem('CartItems', JSON.stringify(this.CartItems));
   }
 
   public elements: Array<number>;
