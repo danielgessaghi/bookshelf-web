@@ -17,7 +17,6 @@ import { forEach } from '@angular/router/src/utils/collection';
 
 export class ReturnsComponent implements OnInit {
     currentUser: User;
-    public ReturnsItem: Returns = new Returns();
     public ReturnsItems: Array<Returns>;
     loading = false;
     returnUrl: string;
@@ -38,6 +37,9 @@ export class ReturnsComponent implements OnInit {
         this.http.get<Array<Returns>>(this.api_returns)
             .subscribe(data => {
                 //debugger; 
+                data.forEach(element => {
+                    element.retQuantity = 0;
+                });
                 this.ReturnsItems = data;
                 localStorage.setItem('ReturnItems', JSON.stringify(data));
             });

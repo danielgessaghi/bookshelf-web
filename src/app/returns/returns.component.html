@@ -36,11 +36,11 @@
                     </td>
                     <td>
                         <form>
-                            <input type="number" name="QUANTITY" [(ngModel)]="returns.QUANTITY" #quantity="ngModel"  required>
+                            <input type="number" name="retQuantity" [(ngModel)]="returns.retQuantity" #quantity="ngModel" min="0" [max]="returns.QUANTITY"  required>
                         </form>
                     </td>
                     <td>
-                        <button (click)="ItemReturn(returns.ID_ORDER_ITEMS)" class="btn btn-success" [disabled]="returns.QUANTITY<=0">
+                        <button (click)="ItemReturn(returns.ID_ORDER_ITEMS)" class="btn btn-success" [disabled]="returns.retQuantity>returns.QUANTITY || returns.retQuantity <= 0">
                              Give Back  &nbsp;<i class="fa fa-arrow-right" aria-hidden="true"></i>
                         </button>
                     </td>
